@@ -1,0 +1,75 @@
+{% load socialaccount %}
+
+<!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="/">MK 가구상점</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/shop/">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about_company/">AboutCompany</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% if user.socialaccount_set.all.0.get_avatar_url %}
+                                <img class="rounded-circle mr-3" src="{{user.socialaccount_set.all.0.get_avatar_url}}" width="25px">
+                                {% else %}
+                                <img class="rounded-circle mr-3" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" width="25px">
+                                {% endif %}
+                                {{ user.username }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{% url 'detail' pk=user.pk %}">MyPage</a>
+                                <a class="dropdown-item" href="/accounts/logout/">LogOut</a>
+                            </div>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">LogIn</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+<!-- Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-right-to-bracket"></i> LogIn</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="{% provider_login_url 'google' %}">
+                <i class="fa-brands fa-google"></i> LogIn with Google
+              </a>
+              <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="/accounts/login/">
+                <i class="fa-regular fa-envelope"></i> LogIn with Email
+              </a>
+            </div>
+            <div class="col-6">
+              <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="/accounts/signup/">
+                <i class="fa-regular fa-envelope"></i> SignUp with Email
+              </a>
+                <a role="button" class="btn btn-outline-dark btn-block btn-sm" href="{% provider_login_url 'naver' %}">
+                <i class="fa-regular fa-n"></i> LogIn with Naver
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

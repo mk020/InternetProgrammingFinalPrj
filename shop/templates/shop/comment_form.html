@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+    Edit Comment - Blog
+{% endblock %}
+
+{% block main_area %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+    <h1>Edit Comment</h1>
+    <hr>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+            {{form | crispy}}
+
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+    </form>
+    </div>
+</section>
+{% endblock %}

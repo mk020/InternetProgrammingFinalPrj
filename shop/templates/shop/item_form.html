@@ -1,0 +1,27 @@
+{% extends 'shop/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+    Create Item
+{% endblock %}
+
+{% block main_area %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+    <h1>Create New Item</h1>
+    <hr>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+            {{form | crispy}}
+            <div id="div_id_tags_str">
+                <label for="id_tags">Tags:</label>
+                <input type="text" id="id_tags" name="tags_str" class="textinput textInput form-control">
+            </div>
+
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+    </form>
+        {{form.media}}
+    </div>
+</section>
+{% endblock %}

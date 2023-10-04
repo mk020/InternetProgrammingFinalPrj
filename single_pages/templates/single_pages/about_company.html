@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>MK 가구상점 - About Company</title>
+    <link href="{% static 'shop/bootstrap4/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen"></link>
+    <script src="https://kit.fontawesome.com/45a0552e5a.js" crossorigin="anonymous"></script>
+    <link href="{% static 'single_pages/css/about1.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link href="{% static 'shop/css/font.css' %}" rel="stylesheet" />
+</head>
+<body>
+    {% include 'shop/navbar.html' %}
+
+    <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8" id="main-area">
+                <br>
+              <h1>MK Furniture</h1> <br> <br>
+              <h3>가고 싶은 곳, 머물고 싶은 곳</h3> <br>
+              <h5>
+                  치열한 경쟁 속에서 살아가는 현대인에게 집은 휴식과 재충전을 할 수 있는 공간입니다.
+              </h5>
+              <h5>
+                  또한, 사랑하는 가족들과 화목한 대화를 나눌 수 있는 공간이기도 합니다.
+              </h5> <br>
+              <h5>
+                  MK Furniture와 함께하면 여러분의 집이 이 세상에 하나밖에 없는 '개성 있고 아름다운 나만의 집'으로 변합니다.
+              </h5>
+              <h5>
+                  MK Furniture는 개성 있고 아름다운 생활 공간을 제공하는 것을 통해 건강하고 화목한 가정을 만드는데 기여하겠습니다.
+              </h5> <br>
+            </div>
+            <div class="col-lg-4">
+              <br> <br> <br> <br> <br> <br>
+                <img class="img-fluid" src="{% static 'single_pages/images/logo.jpg' %}">
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="margin-for-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <br> <h4>About Company</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5><b>회사 소개</b></h5><br>
+                  <p>MK Furniture 창립일: 2022.08.30</p>
+                  <p>대표자: 유민경</p>
+                  <p>주소: 서울시 노원구 노원로30</p>
+                  <p>고객센터: 1577-9498</p>
+                  <p>메일: mkfurniture@duksung.ac.kr</p> <br>
+                  <p>핵심가치: <br>
+                    1. 사람들의 삶의 질을 향상시키는 바르고 좋은 가구를 만듭니다.<br>
+                    2. 안전한 가구를 만듭니다. <br>
+                    3. 믿을 수 있는 가구를 만듭니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="card" data-toggle="modal" data-target="#item">
+                <img class="card-img-top" src="{% static 'single_pages/images/modal.png' %}">
+                <div class="card-body">
+                  <h5>가구 상품에 대한 통계정보</h5>
+                  <p>카테고리별 상품 갯수를 보여줍니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <script>
+    google.charts.load('current',{'packages':['bar']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart(){
+      var data = google.visualization.arrayToDataTable([
+        ['카테고리', '상품 갯수'],
+        ['침실', 7],
+        ['거실', 6],
+        ['주방', 5],
+        ['서재', 6]
+      ]);
+      var options = {
+        chart: {
+          title: '가구 상품에 대한 통계정보',
+          subtitle: '카테고리별 상품 갯수를 보여줍니다.',
+        }
+      };
+      var chart = new google.charts.Bar(document.getElementById('mychart1'));
+      chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+    </script>
+
+    <!-- Modal -->
+  <div class="modal fade" id="item" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel2">가구 상품에 대한 통계정보</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="card-img-top" id="mychart1"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+        {% include 'shop/footer.html' %}
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+</body>
+</html>
